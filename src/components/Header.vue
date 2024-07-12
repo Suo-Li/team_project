@@ -1,49 +1,101 @@
 <script>
-
-import { RouterLink } from 'vue-router'
-export default {
-    components: {
-        RouterLink
+    import { RouterLink } from 'vue-router'
+    export default {
+        components: {
+            RouterLink
+        }
     }
-}
-
 </script>
 
 
 <template>
-    
-
     <div class="headerArea">
-        <RouterLink class="routeItem" to="/">Home</RouterLink>
-        <RouterLink class="routeItem" to="/air">air</RouterLink>
-        <RouterLink class="routeItem" to="/water">water</RouterLink>
-        <RouterLink class="routeItem" to="/polution">polution</RouterLink>
-
-
+        <RouterLink class="routeItem" to="/">
+            <img src="/public/earth.svg" class="home">
+        </RouterLink>
+        <div class="areaRight">
+            <RouterLink class="routeItem A" to="/air"><span>AIR</span></RouterLink>
+            <RouterLink class="routeItem B" to="/water"><span>WATER</span></RouterLink>
+            <RouterLink class="routeItem B" to="/waste"><span>WASTE</span></RouterLink>
+            <div class="bar"><i class="fa-solid fa-grip-lines fa-2xl"></i></div>
+        </div>
     </div>
-
-
+    <img class="headerLine" src="/public/HeaderLineWhite.svg" alt="headerLine">
 </template>
 
 
 <style scoped lang="scss">
-
-$MainColor:rgb(108, 185, 241);
-
-.headerArea {
-    width: 100%;
-    height: 100%;
-    background-color: $MainColor;
-    display: flex;
-    align-items: center;
-    // margin-bottom: 3%;
-
-    .routeItem {
-        margin: 3%;
-        font-size: 36px;
-        color: white;
-        text-decoration: none;
-        cursor: pointer;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+    .headerArea {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10%;
+        z-index: 1;
+        .home{
+            width: 15dvh;
+            height: 100%;
+            cursor: pointer;
+            transition: 0.5s;
+            &:hover{
+                scale: 1.05;
+            }
+            &:active{
+                scale: 1;
+            }
+        }
+        .areaRight{
+            width: 35%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .routeItem {
+                span{
+                    font-family: "Playfair Display", serif;
+                    font-size: 5dvh;
+                    font-weight: bolder;
+                    color: white;
+                    text-align: center;
+                    text-shadow: 0px 5px 5px black;
+                }
+                text-decoration: none;
+                cursor: pointer;
+                transition: 0.3s;
+                &:hover{
+                    scale: 1.05;
+                }
+                &:active{
+                    scale: 1;
+                }
+            }
+            .bar{
+                width: 7dvh;
+                height: 7dvh;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 2rem;
+                box-shadow: 2px 3px 3px black;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                i{
+                    font-size: 2rem;
+                    &:hover{
+                    scale: 1.05;
+                }
+                &:active{
+                    scale: 1;
+                }
+                }
+            }
+        }
     }
-}
+    .headerLine{
+        width: 100%;
+        height: 20dvh;
+        position: fixed;
+        top: 0%;
+        left: 0%;
+    }
 </style>

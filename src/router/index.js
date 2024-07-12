@@ -12,26 +12,17 @@ const router = createRouter({
     {
       path: '/air',
       name: 'air',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/air.vue')
     },
     {
       path: '/water',
       name: 'water',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/water.vue')
     },
     {
-      path: '/polution',
-      name: 'polution',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/polution.vue')
+      path: '/waste',
+      name: 'waste',
+      component: () => import('../views/waste.vue')
     }
   ]
 })
