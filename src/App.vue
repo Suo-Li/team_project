@@ -5,7 +5,7 @@ import Header from './components/Header.vue'
 
 <template>
 <div class="header">
-    <Header />
+  <Header />
 </div>
 <div class="content">
   <RouterView />
@@ -15,18 +15,18 @@ import Header from './components/Header.vue'
 
 <style scoped lang="scss">
 
-.header{
+/*.header{
   width: 100%;
   height: 15dvh;
-}
+}*/
 
 .content{
   width: 100%;
   height: 100dvh;
-  display: flex;
-  
-  align-items: start;
-  justify-content: center;
+  background-color: burlywood;
+  /*display: flex;
+  align-items: end;
+  justify-content: center;*/
 }
 
 </style>

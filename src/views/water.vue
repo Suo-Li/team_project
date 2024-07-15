@@ -1,13 +1,22 @@
-<script setup>
+<script>
+import waterCom from '../components/waterCom.vue'
+import waterLine from '../components/waterLine.vue'
 
+export default{
+    components:{
+        waterCom,
+        waterLine,
+    }
+}
 </script>
 
 
 <template>
-  <h1>This Water Page</h1>
+<waterCom />
+<waterLine />
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
