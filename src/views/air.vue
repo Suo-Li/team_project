@@ -19,10 +19,8 @@ export default {
             console.log(this.cityArr);
         }
     },
-    // 調用資料
-    mounted() {
-        this.fetchData(); // 調用 fetchData
-    }
+
+
 
 }
 
@@ -36,6 +34,16 @@ export default {
 
 
     <div class="outLine">
+
+        <div class="firPic">
+            <img src="/public/air/air_polution_Taichong 1.png" alt="">
+        </div>
+
+        <div class="secPic">
+            <img src="/public/air/amir-hosseini-pITRdF0c6rg-unsplash.jpg" alt="">
+
+        </div>
+
 
         <div class="upper">
 
@@ -68,13 +76,15 @@ export default {
 .outLine {
     /* 分頁大小控制 */
     width: 100%;
-    height: 200dvh;
+    height: 300dvh;
     border: 1px solid black;
     display: flex;
     align-items: start;
     justify-content: space-evenly;
     flex-wrap: wrap;
     padding-top: 3%;
+    position: relative;
+    z-index: -1;
 
 
     .upper {
@@ -85,6 +95,38 @@ export default {
         position: fixed;
         right: 30px;
         bottom: 30px;
+
+    }
+
+    .firPic {
+        width: 100%;
+        height: 100dvh;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            opacity: 90%;
+
+        }
+    }
+
+    .secPic {
+        width: 100%;
+        /* height: 100dvh; */
+        object-fit: cover;
+        position: absolute;
+        top: 99dvh;
+        left: 0%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            opacity: 90%;
+        }
 
     }
 
