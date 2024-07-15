@@ -1,10 +1,15 @@
-<script setup>
+<script>
+import home from '../components/HomeCom.vue'
 
+export default{
+  components:{
+    home
+  }
+}
 </script>
 
-
 <template>
-  <h1>This home Page</h1>
+<home />
 </template>
 
 
