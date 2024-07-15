@@ -1,12 +1,69 @@
 <script>
 export default{
-    data(){
-        return{
+    data() {
+    return {
+      riverArr: [],
+      selectedRiver: '',
+      selectedYear: '',
+      uniqueYears: [],
+      riverOptions: ['淡水河系', '頭前溪', '後龍溪', '大安溪', '大甲溪', '烏溪', '濁水溪', '北港溪', '朴子溪', '八掌溪', '急水溪', '曾文溪', '鹽水溪', '二仁溪', '高屏溪', '東港溪', '林邊溪','蘭陽溪','花蓮溪', '秀姑巒溪', '卑南溪'],
+      selectedData: null,
+      rpi: null
+    };
+  },
+  created() {
+    fetch('https://data.moenv.gov.tw/api/v2/stat_p_123?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1000&sort=ImportDate desc&format=JSON')
+      .then(response => response.json())
+      .then(data => {
+        this.riverArr = data.records.filter(item => {
+          return this.riverOptions.includes(item.item2);
+        });
 
-        }
+        const yearSet = new Set();
+        this.riverArr.forEach(item => {
+          const year = parseInt(item.item1.slice(0, 3));
+          if (year >= 100 && year <= 111) {
+            yearSet.add(year);
+          }
+        });
+        this.uniqueYears = Array.from(yearSet).sort((a, b) => a - b);
+      });
+  },
+  methods: {
+    selectRiver(river) {
+      this.selectedRiver = river;
+      this.selectedYear = '';
+      this.selectedData = null;
+      this.rpi = null;
+    },
+    handleYearChange() {
+      this.selectedData = this.riverArr.find(item => {
+        const year = parseInt(item.item1.slice(0, 3));
+        return year === this.selectedYear && item.item2 === this.selectedRiver;
+      });
+      this.calculateRPI();
+    },
+    calculateRPI() {
+      if (this.selectedData) {
+        const doValue = parseFloat(this.selectedData.value2);
+        const bodValue = parseFloat(this.selectedData.value3);
+        const ssValue = parseFloat(this.selectedData.value4);
+        const nh3Value = parseFloat(this.selectedData.value5);
+        const rpiValue = (1 / 4) * (this.getPollutionScore(doValue) + this.getPollutionScore(bodValue) + this.getPollutionScore(ssValue) + this.getPollutionScore(nh3Value));
+        this.rpi = rpiValue.toFixed(2);
+      } else {
+        this.rpi = null;
+      }
+    },
+    getPollutionScore(value) {
+      if (value <= 2) return 1;
+      else if (value <= 4) return 2;
+      else if (value <= 6) return 3;
+      else if (value <= 8) return 4;
+      else return 5;
     }
-
-}
+  }
+};
 </script>
 
 
@@ -40,6 +97,7 @@ export default{
         </div>
         <div class="info">
             <div class="riverName">
+                
                 <p class="date">2024/07/10</p>
                 <h2 class="river
                 ">淡水河</h2>
