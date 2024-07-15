@@ -10,6 +10,7 @@
 
 <template>
     <div class="headerArea">
+<<<<<<< HEAD
         <RouterLink class="routeItem" to="/">
             <img src="/public/earth.svg" class="home">
         </RouterLink>
@@ -19,12 +20,22 @@
             <RouterLink class="routeItem B" to="/waste"><span>WASTE</span></RouterLink>
             <div class="bar"><i class="fa-solid fa-grip-lines fa-2xl"></i></div>
         </div>
+=======
+        <RouterLink class="routeItem" to="/">Home</RouterLink>
+        <RouterLink class="routeItem" to="/air">air</RouterLink>
+        <RouterLink class="routeItem" to="/water">water</RouterLink>
+        <RouterLink class="routeItem" to="/polution">polution</RouterLink>
+        <div class="headerLine"></div>
+        <div class="logo"></div>
+
+>>>>>>> 8531862ccb23ffe19c863161f8889453278f2477
     </div>
     <img class="headerLine" src="/public/HeaderLineWhite.svg" alt="headerLine">
 </template>
 
 
 <style scoped lang="scss">
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
     .headerArea {
         width: 100%;
@@ -98,4 +109,49 @@
         top: 0%;
         left: 0%;
     }
+=======
+
+$MainColor:rgba(108, 186, 241, 0.537);
+
+.headerArea {
+    width: 100%;
+    height: 15%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 3%;
+    position: fixed;
+    z-index: 1;
+    // margin-bottom: 3%;
+
+    .routeItem {
+        padding: 30px;
+        font-size: 30px;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .headerLine{
+        width: 100%;
+        height: 45%;
+        position: absolute;
+        left: 15%;
+        bottom: 0%;
+        background-image: url('Vector 1.png');
+        background-repeat: no-repeat;
+        background-size: 80% 70%;
+    }
+    .logo{
+    width: 10%;
+    height: 105%;
+    position: absolute;
+    left: 3%;
+    bottom: -20%;
+    background-image: url(/src/components/睜開眼.png);
+    background-repeat: no-repeat;
+    background-size: 100% 105%;
+    }
+}
+>>>>>>> 8531862ccb23ffe19c863161f8889453278f2477
 </style>

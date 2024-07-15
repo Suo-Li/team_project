@@ -7,6 +7,7 @@
     </div>
 </template>
 
+<<<<<<< HEAD
 <style scoped lang="scss">
     .bgImg{
         width: 100%;
@@ -17,4 +18,9 @@
         background-repeat: no-repeat;
         background-position: center;
     }
+=======
+
+<style scoped lang="scss">
+
+>>>>>>> 8531862ccb23ffe19c863161f8889453278f2477
 </style>
