@@ -1,9 +1,13 @@
 <script>
-
 import { RouterLink } from 'vue-router'
+import location from '@/stores/location';
+import { mapState } from 'pinia';
 export default {
     components: {
         RouterLink
+    },
+    computed:{
+        ...mapState(location,["location","pageLocation"])
     }
 }
 
@@ -14,7 +18,7 @@ export default {
     
 
     <div class="headerArea">
-        <RouterLink class="routeItem" to="/">Home</RouterLink>
+        <RouterLink class="routeItem" :class="{'selected':this.location ===1}" to="/">Home</RouterLink>
         <RouterLink class="routeItem" to="/air">air</RouterLink>
         <RouterLink class="routeItem" to="/water">water</RouterLink>
         <RouterLink class="routeItem" to="/polution">polution</RouterLink>
@@ -28,7 +32,7 @@ export default {
 
 
 <style scoped lang="scss">
-
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Playwrite+CU:wght@100..400&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 $MainColor:rgba(108, 186, 241, 0.537);
 
 .headerArea {
@@ -40,15 +44,17 @@ $MainColor:rgba(108, 186, 241, 0.537);
     justify-content: flex-end;
     padding-right: 3%;
     position: fixed;
-    z-index: 1;
+    z-index: 50;
     // margin-bottom: 3%;
 
     .routeItem {
+        font-family: "Bona Nova SC", serif;
         padding: 30px;
-        font-size: 30px;
+        font-size: 25px;
         color: white;
         text-decoration: none;
         cursor: pointer;
+        text-shadow: 2px 2px 2px #000;
     }
     .headerLine{
         width: 100%;

@@ -144,7 +144,7 @@ export default{
 
 <style scoped lang="scss">
 .backGround{
-    width: 100vw;
+    width: 99dvw;
     height: 100vh;
     position: relative;
     background-image: url('water figma.jpg');
