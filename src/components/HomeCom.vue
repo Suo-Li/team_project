@@ -5,13 +5,22 @@ export default {
 </script>
 
 <template>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
   <div class="homeimg">
     <div class="blackfilter"></div>
     <img src="./homeimg.avif" alt="" />
     <h1>OUR PLANET&nbsp;&nbsp;OUR RESPONSIBILITY</h1>
-    <span>&mdash;&mdash;&mdash;&mdash;&mdash;TAIWAN CHAPTER&mdash;&mdash;&mdash;&mdash;&mdash;</span>
-    <RouterLink to="/air"><button>Let's Go<i class="fa-solid fa-caret-right" style="position: relative;right: -5px;"></i></button></RouterLink>
+    <span
+      >&mdash;&mdash;&mdash;&mdash;&mdash;TAIWAN
+      CHAPTER&mdash;&mdash;&mdash;&mdash;&mdash;</span
+    >
+    <RouterLink to="/air"><button>Let's Go<i class="fa-solid fa-caret-right"style="position: relative; right: -5px"></i></button></RouterLink>
   </div>
 </template>
 
@@ -65,18 +74,40 @@ export default {
     border-radius: 3px;
     font-family: "Kanit", sans-serif;
     cursor: pointer;
-    position: fixed;
+    position: absolute;
     top: 68%;
     left: 65.1%;
     font-size: 15px;
-    z-index: 2;
-    border: 2px solid rgba(255,255,255,0.8);
+    z-index: 3;
+    border: 2px solid rgba(255, 255, 255, 0.8);
     letter-spacing: 2px;
-    background-color: rgba(255,255,255,0);
+    background-color: rgba(255, 255, 255, 0);
     font-weight: 200;
     color: white;
     text-shadow: 2px 2px 2px #000;
     box-shadow: 1px 1px 7px 1px #000;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120px;
+      width: 120px;
+      height: 26px;
+      background-color: white;
+      z-index: 2;
+      transition: left 0.5s;
+      opacity: 0;
+
+      &:hover::before{
+        left: 100% ;
+        opacity: 1;
+      }
+      // &:hover{
+      //   color: #000
+      // }
+    }
   }
 }
 </style>

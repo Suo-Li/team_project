@@ -1,5 +1,5 @@
 <script>
-import home from "../components/HomeCom.vue";
+import Home from "../components/HomeCom.vue";
 import location from "@/stores/location";
 import { mapActions } from "pinia";
 
@@ -11,13 +11,13 @@ export default {
     this.setPages(1);
   },
   components: {
-    home,
+    Home,
   },
 };
 </script>
 
 <template>
-  <home />
+    <Home />
 </template>
 
 <style scoped lang="scss">
