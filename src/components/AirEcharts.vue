@@ -449,6 +449,9 @@ body {
 
         path {
             stroke: white;
+            // fill: rgb(47, 167, 47);
+            fill: rgb(34, 139, 34);
+            // fill: rgb(139,69,19);
 
             &:hover {
                 fill: gold; //!important提高優先級
