@@ -552,27 +552,27 @@ body {
             // height: ;
             .rightInfo {
                 width: 45%;
-                font-size: 25px;
+                font-size: 23px;
 
                 // position: absolute;
                 // bottom: 0%;
                 // right: 0%;
                 // border: 1px solid black;
                 sub {
-                    font-size: 20px;
+                    font-size: 18px;
                 }
             }
 
             .leftInfo {
                 width: 50%;
-                font-size: 25px;
+                font-size: 23px;
 
                 // position: absolute;
                 // bottom: 0%;
                 // left: 0%;
                 // border: 1px solid black;
                 sub {
-                    font-size: 20px;
+                    font-size: 18px;
                 }
             }
 
@@ -583,7 +583,7 @@ body {
             font-size: 15px;
             width: 100%;
             position: absolute;
-            bottom: -7%;
+            bottom: -3%;
         }
 
     }
