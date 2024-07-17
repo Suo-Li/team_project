@@ -101,7 +101,7 @@ $MainColor: rgba(108, 186, 241, 0.537);
   }
 
   .selected {
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid rgb(255, 255, 255);
     scale: 1.1;
   }
 }

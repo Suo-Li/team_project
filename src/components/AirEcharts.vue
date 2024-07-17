@@ -39,6 +39,7 @@ export default {
             this.areaName = target.dataset.name;
             this.updateAirData(this.areaName, this.selectedTime); // 更新數據顯示
 
+
         },
 
         processData() {
@@ -108,7 +109,6 @@ export default {
                         avgSo2,
                         avgNo2,
                     };
-
                 }
 
                 // 取平均
@@ -123,6 +123,14 @@ export default {
                 }
             }
             this.uniqueDates = Array.from(uniDate);
+
+
+            // 讓時間等於第一個
+            if (this.uniqueDates.length > 0) {
+                this.selectedTime = this.uniqueDates[0];
+                // this.selectedTime = ;
+               
+            }
 
 
         },
@@ -164,6 +172,7 @@ export default {
             .then(data => {
                 this.areaArr = data.records;
                 this.processData();  // 將數據處理放在這裡
+
                 // console.log(currentAirData);
             });
     },
@@ -350,10 +359,14 @@ export default {
             </div>
 
 
-            <div class="circleInfo" :class="circleInfoClass">
-
-                <span id="airStatus">{{ airStatus }}</span>
-
+            <div class="circleInfo" :class="circleInfoClass"> <!-- 翻轉圈圈 -->
+                <div class="front size">
+                    <span id="airStatus">{{ airStatus }}</span>
+                </div>
+                <div class="back size">
+                    <!-- <img src="../components/賴1.png" alt=""> -->
+                    <span id="airStatus">{{ airStatus }}</span>
+                </div>
             </div>
 
             <div class="dataInfo">
@@ -441,6 +454,7 @@ body {
         path {
             stroke: white;
             fill: rgb(34, 139, 34);
+
             &:hover {
                 fill: gold; //!important提高優先級
             }
@@ -449,20 +463,20 @@ body {
         .kinmen {
             // fill: aquamarine;
 
-            &:hover path{
+            &:hover path {
                 fill: gold;
-                
+
             }
         }
 
-        .lienchiang{
-            &:hover path{
+        .lienchiang {
+            &:hover path {
                 fill: gold;
             }
         }
 
-        .penghu{
-            &:hover path{
+        .penghu {
+            &:hover path {
                 fill: gold;
             }
         }
@@ -509,20 +523,67 @@ body {
         }
 
         .circleInfo {
-            width: 50%;
-            height: 40%;
+            width: 209px;
+            height: 192px;
             border: 5px solid rgb(0, 0, 0);
             margin-bottom: 3%;
             border-radius: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            &:hover .front{
-            transform: rotateY(180deg);
-        }
-        &:hover .back{
-            transform: rotateY(0deg);
-        }
+
+            &:hover .front {
+                transform: rotateY(180deg);
+            }
+
+            &:hover .back {
+                transform: rotateY(0deg);
+            }
+
+
+            .size {
+                width: 209px;
+                height: 192px;
+                border: 5px solid transparent;
+                position: absolute;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                //翻轉效果 !!!
+                transition: transform 1.0s ease;
+                backface-visibility: hidden;
+
+            }
+
+            .front {
+                transform: rotateY(0deg);
+                border-radius: 100%;
+
+                // debug用
+                // transform: rotateY(-180deg);
+
+
+                // background-color: aqua;
+            }
+
+            .back {
+                transform: rotateY(-180deg);
+
+
+                // debug用
+                // transform: rotateY(0deg);
+                img {
+                    object-fit: contain;
+                }
+
+
+
+            }
+
+
+
 
         }
 
