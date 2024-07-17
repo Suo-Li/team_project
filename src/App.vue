@@ -22,7 +22,7 @@ import Header from './components/Header.vue'
 
 .content{
   width: 100%;
-  height: 100dvh;
+  height: 0;
   // background-color: burlywood;
   /*display: flex;
   align-items: end;
