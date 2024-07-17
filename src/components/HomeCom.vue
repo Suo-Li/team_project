@@ -91,7 +91,7 @@ export default {
       height: 26px;
       background-color: rgb(255, 255, 255);
       z-index: 2;
-      transition: all 0.8s;
+      transition: 0.8s;
       opacity: 0;
     }
     &:hover {

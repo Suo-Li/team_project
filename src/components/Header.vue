@@ -21,7 +21,7 @@ export default {
         <RouterLink class="routeItem" :class="{'selected':this.location ===1}" to="/">Home</RouterLink>
         <RouterLink class="routeItem" to="/air">air</RouterLink>
         <RouterLink class="routeItem" to="/water">water</RouterLink>
-        <RouterLink class="routeItem" to="/polution">polution</RouterLink>
+        <RouterLink class="routeItem" to="/polution">pollution</RouterLink>
         <div class="headerLine"></div>
         <div class="logo"></div>
 
@@ -49,12 +49,13 @@ $MainColor:rgba(108, 186, 241, 0.537);
 
     .routeItem {
         font-family: "Bona Nova SC", serif;
-        padding: 30px;
+        margin: 0px 30px;
         font-size: 25px;
         color: white;
         text-decoration: none;
         cursor: pointer;
         text-shadow: 2px 2px 2px #000;
+        z-index: 2;
     }
     .headerLine{
         width: 100%;
