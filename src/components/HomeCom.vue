@@ -39,7 +39,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playwrite+CU:wght@100..400&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap");
 
 .homeimg {
-  width: 99dvw;
+  width: 100dvw;
   height: 100dvh;
   overflow: hidden;
   position: relative;
@@ -68,6 +68,7 @@ export default {
     color: white;
     z-index: 2;
     text-shadow: 2px 2px 2px #000;
+    letter-spacing: 2px;
   }
 
   span {
