@@ -339,7 +339,7 @@ export default {
         <div class="info">
 
 
-            <h1 id="areaName" class="titleInfo">區域: {{ this.areaName }}</h1>
+            <h1 id="areaName" class="titleInfo">{{ this.areaName }}</h1>
 
             <!-- select -->
             <div class="selectInfo">
@@ -352,7 +352,7 @@ export default {
 
             <div class="circleInfo" :class="circleInfoClass">
 
-                <span id="airStatus">狀態:{{ airStatus }}</span>
+                <span id="airStatus">{{ airStatus }}</span>
 
             </div>
 
@@ -413,6 +413,8 @@ export default {
 
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&display=swap');
+
 * {
     padding: 0;
     border: 0;
@@ -482,6 +484,7 @@ body {
 }
 
 .showArea {
+    font-family: "LXGW WenKai Mono TC", monospace;
     width: 40%;
     height: 100%;
     // border: 1px solid red;
@@ -527,6 +530,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 50px;
 
         }
 
