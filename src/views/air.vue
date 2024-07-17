@@ -1,114 +1,148 @@
 <script>
 // import
+import SvgAndDash from "../components/AirEcharts.vue";
+import location from "@/stores/location";
+import { mapActions } from "pinia";
 
-
-// 宣告
 export default {
-    data() {
-        return {
-            cityArr: [],
-        };
-
-    },
-
-    methods: {
-        async fetchData() {
-            let wibsite = await fetch('https://data.moenv.gov.tw/api/v2/aqf_p_01?language=zh&api_key=58f5fc65-e6f6-4c1e-a2e1-2a5a69fbaef8');
-            let test = await wibsite.json();
-            this.cityArr = test.records;
-            console.log(this.cityArr);
-        }
-    },
-    // 調用資料
-    mounted() {
-        this.fetchData(); // 調用 fetchData
-    }
-
-}
-
+  methods: {
+    ...mapActions(location, ["setPages"]),
+  },
+  mounted() {
+    this.setPages(2);
+  },
+  data() {
+    return {};
+  },
+  components: {
+    SvgAndDash,
+  },  
+};
 </script>
 
-
-
-
-
 <template>
+  <div class="outLine">
+    <!-- <div class="firPic">
+            <img src="/public/air/air_polution_Taichong 1.png" alt="">
+        </div> -->
 
-
-    <div class="outLine">
-
-        <div class="upper">
-
-        </div>
-
-        <div class="taiwanSVG">
-            <!-- 印出資料 -->
-            <!-- <div v-for="item in cityArr" :key="item.id">{{ item.forecastdate}} - {{ item.area }}</div>   -->
-
-        </div>
-
-        <div class="dashBoard">
-
-        </div>
-
-        <div class="trandChart">
-
-        </div>
-
-
+    <div class="secPic">
+      <img
+        src="../components/air/amir-hosseini-pITRdF0c6rg-unsplash.jpg"
+        alt=""
+      />
     </div>
 
+    <!-- 
+        <div class="upper">
 
+        </div> -->
 
+    <div class="taiwanSVG">
+      <!-- 印出資料 -->
+      <!-- <div v-for="item in cityArr" :key="item.id">{{ item.forecastdate}} - {{ item.area }}</div>   -->
+      <SvgAndDash />
+    </div>
+
+    <!-- <div class="dashBoard">
+
+        </div> -->
+
+    <!-- <div class="trandChart">
+
+        </div> -->
+  </div>
 </template>
 
-
-
-<style scoped>
+<style scoped lang="scss">
 .outLine {
-    /* 分頁大小控制 */
+  /* 分頁大小控制 */
+  width: 100%;
+  height: 100dvh;
+  /* height: 200dvh; */
+  border: 1px solid black;
+  display: flex;
+  align-items: end;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  // padding-top: 3%;
+  position: relative;
+  z-index: -1;
+  backdrop-filter: blur(5px);
+
+  // .upper {
+  //     width: 50px;
+  //     height: 150px;
+  //     border: 1px solid black;
+
+  //     position: fixed;
+  //     right: 30px;
+  //     bottom: 30px;
+
+  // }
+
+  // .firPic {
+  //     width: 100%;
+  //     /* height: 100dvh; */
+  //     height: 60%;
+  //     object-fit: cover;
+  //     position: absolute;
+  //     top: 0%;
+  //     left: 0%;
+
+  //     img {
+  //         width: 100%;
+  //         height: 100%;
+  //         opacity: 90%;
+
+  //     }
+  // }
+
+  .secPic {
     width: 100%;
-    height: 200dvh;
-    border: 1px solid black;
+    height: 100%;
+    // height: 58%;
+
+    // position: absolute;
+    // top: 0%;
+    // left: 0%;
+
+    // padding-bottom: 3%;
+    // backdrop-filter: blur(5px);
+    img {
+      width: 100%;
+      height: 100%;
+      filter: blur(2px);
+
+      // padding-bottom: 3%;
+    }
+  }
+
+  .taiwanSVG {
+    width: 80vw;
+    height: 70dvh;
+    // border: 1px solid black;
+    z-index: 1;
     display: flex;
-    align-items: start;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    padding-top: 3%;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 0%;
+    margin-bottom: 3%;
+  }
 
-
-    .upper {
-        width: 50px;
-        height: 150px;
+  /* .dashBoard {
+        width: 20dvw;
+        height: 70dvh;
         border: 1px solid black;
+        z-index: 1;
 
-        position: fixed;
-        right: 30px;
-        bottom: 30px;
+    } */
 
-    }
-
-
-    .taiwanSVG {
-        width: 50vw;
-        height: 90dvh;
-        border: 1px solid black;
-
-    }
-
-    .dashBoard {
-        width: 15dvw;
-        height: 90dvh;
-        border: 1px solid black;
-
-    }
-
-    .trandChart {
+  /* .trandChart {
         width: 80dvw;
         height: 90dvh;
         border: 1px solid black;
-
-    }
-
+    } */
 }
 </style>

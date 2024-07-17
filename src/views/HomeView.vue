@@ -1,12 +1,24 @@
-<script setup>
+<script>
+import Home from "../components/HomeCom.vue";
+import location from "@/stores/location";
+import { mapActions } from "pinia";
 
+export default {
+  methods: {
+    ...mapActions(location, ["setPages"]),
+  },
+  mounted() {
+    this.setPages(1);
+  },
+  components: {
+    Home,
+  },
+};
 </script>
 
-
 <template>
-  <h1>This home Page</h1>
+    <Home />
 </template>
-
 
 <style scoped lang="scss">
 

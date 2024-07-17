@@ -22,8 +22,8 @@ import Header from './components/Header.vue'
 
 .content{
   width: 100%;
-  height: 100dvh;
-  background-color: burlywood;
+  height: 0;
+  // background-color: burlywood;
   /*display: flex;
   align-items: end;
   justify-content: center;*/

@@ -175,10 +175,10 @@ export default{
         </div>
         <div class="rpi" v-bind="this.selectVal">
             <h4>RPI</h4>
-            <div class="red" value="red"></div>
-            <div class="orange" value="orange"></div>
-            <div class="yellow" value="yello"></div>
-            <div class="green" value="green"></div>
+            <div class="red"></div>
+            <div class="orange"></div>
+            <div class="yello"></div>
+            <div class="green"></div>
         </div>
         <div class="rpiValue">
             <p>6.0</p>
@@ -191,7 +191,7 @@ export default{
 
 <style scoped lang="scss">
 .backGround{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     position: relative;
     background-image: url('water figma.jpg');
