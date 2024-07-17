@@ -79,6 +79,12 @@ $MainColor: rgba(108, 186, 241, 0.537);
       background-repeat: no-repeat;
       background-size: cover;
       cursor: pointer;
+      &:hover{
+      scale: 1.05;
+    }
+    &:active{
+      scale: 1;
+    }
     }
   }
 
