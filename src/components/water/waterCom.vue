@@ -20,7 +20,7 @@ export default{
 
     <div class="backGround">
         <div class="map" id="app">
-            <img src="../components/河川圖.png" alt="" class="kawaTW">
+            <img src="./河川圖.png" alt="" class="kawaTW">
             <p class="A" @click="selectRiver('淡水河')">淡水河</p>
             <p class="B" @click="selectRiver('頭前溪')">頭前溪</p>
             <p class="C" @click="selectRiver('後龍溪')">後龍溪</p>
@@ -194,7 +194,7 @@ export default{
     width: 100%;
     height: 100vh;
     position: relative;
-    background-image: url('water figma.jpg');
+    background-image: url('./water\ figma.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex; // ⤵固定map、info、rpi的大div並排在底部

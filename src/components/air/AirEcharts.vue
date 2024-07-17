@@ -129,7 +129,6 @@ export default {
             if (this.uniqueDates.length > 0) {
                 this.selectedTime = this.uniqueDates[0];
                 // this.selectedTime = ;
-               
             }
 
 

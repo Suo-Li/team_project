@@ -1,5 +1,5 @@
 <script>
-import Home from "../components/HomeCom.vue";
+import Home from "../components/headerCp/HomeCom.vue";
 import location from "@/stores/location";
 import { mapActions } from "pinia";
 
