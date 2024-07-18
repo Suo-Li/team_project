@@ -1,6 +1,6 @@
 <script>
 // import
-import SvgAndDash from "../components/AirEcharts.vue";
+import SvgAndDash from "../components/air/AirEcharts.vue";
 import location from "@/stores/location";
 import { mapActions } from "pinia";
 
@@ -28,7 +28,7 @@ export default {
 
     <div class="secPic">
       <img
-        src="../components/air/amir-hosseini-pITRdF0c6rg-unsplash.jpg"
+        src="/public/air/airBgimg.jpg"
         alt=""
       />
     </div>

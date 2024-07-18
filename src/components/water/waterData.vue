@@ -121,7 +121,7 @@ rpiIcon() {   // RPI表情
 
 <div class="backGround">
 <div class="map">
-    <img src="../components/河川圖.png" alt="" class="kawaTW">
+    <img src="./河川圖.png" alt="" class="kawaTW">
     <p class="A" @click="selectRiver('淡水河系'), riverCity('台北 新北')">淡水河系</p>
     <p class="B" @click="selectRiver('頭前溪'), riverCity('新竹')">頭前溪</p>
     <p class="C" @click="selectRiver('後龍溪'), riverCity('苗栗')">後龍溪</p>
@@ -197,7 +197,7 @@ rpiIcon() {   // RPI表情
     width: 100%;
     height: 100vh;
     position: relative;
-    background-image: url('water figma.jpg');
+    background-image: url('./water\ figma.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex; // ⤵固定map、info、rpi的大div並排在底部
