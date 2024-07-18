@@ -363,7 +363,7 @@ export default {
                     <span id="airStatus">{{ airStatus }}</span>
                 </div>
                 <div class="back size">
-                    <img src="../components/賴1.png" alt="">
+                    <img src="../air/賴臭臉.jpg" alt="">
                     <!-- <span id="airStatus">{{ airStatus }}</span> -->
                 </div>
             </div>
@@ -426,6 +426,7 @@ export default {
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap');
 
 * {
     padding: 0;
@@ -539,7 +540,10 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-
+            font-family: "Noto Serif TC", serif;
+            font-size: 47px;
+            // overflow: hidden;
+            
             &:hover .front {
                 transform: rotateY(180deg);
             }
@@ -578,12 +582,17 @@ body {
 
             .back {
                 transform: rotateY(-180deg);
-
+                object-fit: contain;
+                clip-path: circle(50% at 50% 50%);
+                overflow: hidden;
+                // object-fit: cover;
 
                 // debug用
                 // transform: rotateY(0deg);
                 img {
-                    object-fit: contain;
+                    width: 99%;
+                    height: 99%;
+                    object-fit: cover
                 }
 
 
@@ -616,7 +625,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: space-around;
-
+            // font-family: "Noto Serif TC", serif;
             // height: ;
             .rightInfo {
                 width: 45%;
