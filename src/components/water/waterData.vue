@@ -9,8 +9,38 @@ data() {
     riverbyCity:'',
     uniqueYears: [],
     riverOptions: ['淡水河系', '頭前溪', '後龍溪', '大安溪', '大甲溪', '烏溪', '濁水溪', '北港溪', '朴子溪', '八掌溪', '急水溪', '曾文溪', '鹽水溪', '二仁溪', '高屏溪', '東港溪', '林邊溪','蘭陽溪','花蓮溪', '秀姑巒溪', '卑南溪'],
+    // ⤵ 河景照
+    riverImages: {
+        '淡水河系': 'src/assets/photo/新店溪.png',
+        '頭前溪': 'src/assets/photo/頭前溪.png',
+        '後龍溪': 'src/assets/photo/後龍溪.png',
+        '大安溪': 'src/assets/photo/大安溪.png',
+        '大甲溪': 'src/assets/photo/大甲溪.png',
+        '烏溪': 'src/assets/photo/烏溪.png',
+        '濁水溪': 'src/assets/photo/濁水溪.png',
+        '北港溪': 'src/assets/photo/北港溪.png',
+        '朴子溪': 'src/assets/photo/朴子溪.png',
+        '八掌溪': 'src/assets/photo/八掌溪.png',
+        '急水溪': 'src/assets/photo/急水溪.png',
+        '曾文溪': 'src/assets/photo/曾文溪.png',
+        '鹽水溪': 'src/assets/photo/鹽水溪.png',
+        '二仁溪': 'src/assets/photo/二仁溪.png',
+        '高屏溪': 'src/assets/photo/高屏溪.png',
+        '東港溪': 'src/assets/photo/東港溪.png',
+        '林邊溪': 'src/assets/photo/林邊溪.png',
+        '蘭陽溪': 'src/assets/photo/蘭陽溪.png',
+        '花蓮溪': 'src/assets/photo/花蓮溪.png',
+        '秀姑巒溪': 'src/assets/photo/秀姑巒溪.png',
+        '卑南溪': 'src/assets/photo/卑南溪.png',
+    },
+    riverImage: '',
     selectedData: null,
-    rpi: null
+    // ⤵ 在吃到數據前是空值
+    rpi: null,
+    doScore: null,
+    bodScore: null,
+    ssScore: null,
+    nh3Score: null,
     };
 },
 created() {
@@ -35,6 +65,7 @@ methods: {
         if (this.selectedYear) {
             this.updateSelectedData();
         }
+        this.riverImage = this.riverImages[river] || '';
         /*this.selectedYear = '';
         this.selectedData = null;
         this.rpi = null; */
@@ -57,28 +88,54 @@ methods: {
     },
     calculateRPI() {             //  RPI 計算公式 
     if (this.selectedData) {
-        const doValue = parseFloat(this.selectedData.value2);
-        const bodValue = parseFloat(this.selectedData.value3);
-        const ssValue = parseFloat(this.selectedData.value4);
-        const nh3Value = parseFloat(this.selectedData.value5);
-        const rpiValue = (1 / 4) * (this.getPollutionScore(doValue) + this.getPollutionScore(bodValue) + this.getPollutionScore(ssValue) + this.getPollutionScore(nh3Value));
+        const doValue = parseFloat(this.selectedData.value2); // 溶氧量
+        const bodValue = parseFloat(this.selectedData.value3); // 生化需氧量
+        const ssValue = parseFloat(this.selectedData.value4); // 懸浮固體 
+        const nh3Value = parseFloat(this.selectedData.value5); // 氨氮
+
+        const doScore = this.getPollutionScore(doValue, 'DO');
+        const bodScore = this.getPollutionScore(bodValue, 'BOD');
+        const ssScore = this.getPollutionScore(ssValue, 'SS');
+        const nh3Score = this.getPollutionScore(nh3Value, 'NH3');
+
+        const rpiValue = (1 / 4) * (doScore + bodScore + ssScore + nh3Score);
         this.rpi = rpiValue.toFixed(2);
     } else {
         this.rpi = null;
     }
     },
-    getPollutionScore(value) {
-    if (value <= 2) return 1;
-    else if (value <= 4) return 2;
-    else if (value <= 6) return 3;
-    else return 4;
+    getPollutionScore(value, type) {
+        switch (type) {
+            case 'DO':
+                if (value >= 6.5) return 1;
+                else if (value >= 4.6) return 3;
+                else if (value >= 2.0) return 6;
+                else return 10;
+            case 'BOD':
+                if (value <= 3.0) return 1;
+                else if (value <= 4.9) return 3;
+                else if (value <= 15.0) return 6;
+                else return 10;
+            case 'SS':
+                if (value <= 20.0) return 1;
+                else if (value <= 49.9) return 3;
+                else if (value <= 100) return 6;
+                else return 10;
+            case 'NH3':
+                if (value <= 0.50) return 1;
+                else if (value <= 0.99) return 3;
+                else if (value <= 3.00) return 6;
+                else return 10;
+            default:
+                return 0;
+        }
     }
 },
 computed: {
 rpiLevel() {
     if (this.rpi === null) return '';
     const rpi = parseFloat(this.rpi);
-    if (rpi <= 2) return '未（稍）受污染';
+    if (rpi <= 2) return '未(稍)受污染';
     else if (rpi <= 3) return '輕度污染';
     else if (rpi <= 6) return '中度污染';
     else return '嚴重污染';
@@ -108,7 +165,7 @@ rpiIcon() {   // RPI表情
     if (rpi <= 2) return 'fa-regular fa-face-laugh'; //綠色
     else if (rpi <= 3) return 'fa-regular fa-face-meh'; //黃色
     else if (rpi <= 6) return 'fa-regular fa-face-sad-tear'; //橘色
-    else return 'fa-face-sad-cry'; // 紅色
+    else return 'fa-regular fa-face-sad-cry'; // 紅色
 }
 }
 
@@ -163,21 +220,28 @@ rpiIcon() {   // RPI表情
     <div class="back size" :style="{ backgroundColor: sizeBackgroundColor, borderColor: sizeBorderColor }">
     <i :class="`fa ${rpiIcon}`"></i>
     </div>
+    <p class="mg">單位：mg/L</p>
     </div>
     <div class="testValue"> <!-- 監測數值 -->
-    <p class="testText" >監測站數 <p>{{ selectedData ? selectedData.value1 : '' }}</p></p>
-    <p class="testText" >溶氧量平均值 <p>{{ selectedData ? selectedData.value2 : '' }}</p></p>
-    <p class="testText" >生化需氧量平均值 <p>{{ selectedData ? selectedData.value3 : '' }}</p></p>
-    <p class="testText" >懸浮固體平均值 <p>{{ selectedData ? selectedData.value4 : '' }}</p></p>
-    <p class="testText" >氨氮平均值 <p>{{ selectedData ? selectedData.value5 : '' }}</p></p>
-    <p class="testText" >溶氧量最大值<p>{{ selectedData ? selectedData.value6 : '' }}</p></p>
-    <p class="testText" >生化需氧量最大值 <p>{{ selectedData ? selectedData.value7 : '' }}</p></p>
-    <p class="testText" >懸浮固體最大值 <p>{{ selectedData ? selectedData.value8 : '' }}</p></p>
-    <p class="testText" >氨氮最大值<p>{{ selectedData ? selectedData.value9 : '' }}</p></p>
-    <p class="testText" >資料來源:<a href="https://data.gov.tw/dataset/89036">重要河川水質概況</a></p>
-    
+        <p class="testText" >氨氮平均值 <p>{{ selectedData ? selectedData.value5 : '' }}</p></p>
+        <p class="testText NH3-N" >氨氮最大值<p>{{ selectedData ? selectedData.value9 : '' }}</p></p>
+        <p class="testText" >溶氧量平均值 <p>{{ selectedData ? selectedData.value2 : '' }}</p></p>
+        <p class="testText Oxygen" >溶氧量最大值<p>{{ selectedData ? selectedData.value6 : '' }}</p></p>
+        <p class="testText" >懸浮固體平均值 <p>{{ selectedData ? selectedData.value4 : '' }}</p></p>
+        <p class="testText SS" >懸浮固體最大值 <p>{{ selectedData ? selectedData.value8 : '' }}</p></p>
+        <p class="testText " >生化需氧量平均值 <p>{{ selectedData ? selectedData.value3 : '' }}</p></p>
+        <p class="testText BOD" >生化需氧量最大值 <p>{{ selectedData ? selectedData.value7 : '' }}</p></p>
+        <p class="testText" >監測站數 <p>{{ selectedData ? selectedData.value1 : '' }}</p></p>
+        <p class="testText" >資料來源：<a href="https://wq.moenv.gov.tw/EWQP/zh/Encyclopedia/WaterKnowledge/EncyclopediaList.aspx">水質の小百科 ฅ^.ˬ.^ฅ</a></p>
     </div>
 </div>
+
+<!-- 圖片 -->
+<div v-if="riverImage" class="riverImage">
+    <img :src="riverImage" alt="River Image" />
+</div>
+
+
 <div class="rpi">
     <h4>RPI</h4>
     <div class="red"></div>
@@ -214,7 +278,7 @@ rpiIcon() {   // RPI表情
 }
 
 .map{
-    width: 50dvw;
+    width: 39dvw;
     height: 85dvh;
     display: flex;
     justify-content: center;
@@ -244,93 +308,93 @@ rpiIcon() {   // RPI表情
         }
     }
     .A{
-        left: 48%;
-        top: 0%;
+        left: 45%;
+        top: 1%;
     }
     .B{
-        left: 40%;
+        left: 37%;
         top: 9%;
     }
     .C{
-        left: 36%;
-        top: 15%;
+        left: 32%;
+        top: 14%;
     }
     .D{
-        left: 34%;
+        left: 28%;
         top: 20%;
     }
     .E{
-        left: 32%;
+        left: 25%;
         top: 25%;
     }
     .F{
-        left: 32%;
+        left: 26%;
         top: 30%;
     }
     .G{
-        left: 26%;
-        top: 39%;
+        left: 19%;
+        top: 37%;
     }
     .H{
-        left: 22%;
-        top: 47%;
+        left: 14%;
+        top: 42%;
     }
     .I{
-        left: 23%;
-        top: 51%;
+        left: 15%;
+        top: 47%;
     }
     .J{
-        left: 22%;
-        top: 55%;
+        left: 16%;
+        top: 52%;
     }
     .K{
-        left: 21%;
-        top: 59%;
+        left: 13%;
+        top: 57%;
     }
     .L{
-        left: 20%;
-        top: 63%;
+        left: 11%;
+        top: 62%;
     }
     .M{
-        left: 22%;
+        left: 14%;
         bottom: 25%;
     }
     .N{
-        left: 24%;
-        bottom: 21%;
+        left: 16%;
+        bottom: 20%;
     }
     .O{
-        left: 27%;
-        bottom: 12%;
+        left: 18%;
+        bottom: 14%;
     }
     .P{
-        left: 30%;
-        bottom: 8%;
+        left: 23%;
+        bottom: 9%;
     }
     .Q{
-        left: 33%;
+        left: 27%;
         bottom: 4%;
     }
     .R{
-        left: 71%;
+        left: 78%;
         top: 15%;
     }
     .S{
-        left: 68%;
+        left: 72%;
         top: 38%;
     }
     .T{
-        left: 65%;
+        left: 69%;
         bottom: 40%;
     }
     .U{
-        left: 57%;
+        left: 59%;
         bottom: 18%;
     }
 }
 
 .info{
-    width: 34dvw;
+    width: 35dvw;
     height: 80dvh;
     margin: 15px 0px;
     background-color: rgba(128, 128, 128, 0.599);
@@ -400,11 +464,11 @@ rpiIcon() {   // RPI表情
         }
         .front{
             padding-bottom: 15px;
-            font-size: 30px;
+            font-size: 27px;
             transform:  rotateY(0deg);
             
             .rpiNum{
-                font-size: 35px;
+                font-size: 33px;
                 font-weight: 600;
             }
             /* &:hover{ 要對整個card，不是單面~~
@@ -421,6 +485,13 @@ rpiIcon() {   // RPI表情
                 
             }
         }
+        .mg{
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.895);
+            position: fixed;
+            right: 27%;
+            top: 55%;
+        }
     }
     .testValue{
         height: 45%;
@@ -429,6 +500,7 @@ rpiIcon() {   // RPI表情
         flex-wrap: wrap;
         // justify-content: space-between;
         align-items: center;
+        position: relative;
 
         .testText{
             width: 47%;
@@ -443,39 +515,84 @@ rpiIcon() {   // RPI表情
             align-items: center;
             justify-content: space-between;
             padding: 10px;
-            position: relative;
-
-            &:hover{
-                ::before{
-                    position: absolute;
-                    left: 0px;
-                    top: 0px;
-                    width: 100%;
-                    height: 100%;
-                    
-                    background-color: bisque;
-                    content: "睡覺1234679999999";
-            }
-            }
             
             p{
-                //font-weight: bold; 
                 font-size: 28px;
-                padding-left: 10px;
+                padding-left: 20px;
+            }
+            a{
+                font-size: 15px;
+                text-decoration: none;
+                position: absolute;
+                right: 15px;
+                z-index: 1;
+            }
+
+            ::before{
+                scale: 1.05;
+                transition: 0.3s;
+                position: absolute;
+                content: "";
+                text-align: justify;
+                color: aliceblue;
+                height: 67%;
+                width: 45%;
+                padding: 20px 30px;
+                font-size: 17px;
+                // border: 3px solid ;
+                border-top-right-radius: 14%;
+                // border-top-left-radius: 30px;
+                border-bottom-left-radius: 30%;
+                // ⤵ 固定位置，從<p>區塊左上角起算，與左邊距離為0，即靠左的意思
+                right: 52%;
+                top: -3px; // 置頂。假如top是100%，意為與上方距離100%時才會出現，因此內容會在區塊的下方
+                z-index: 1;
+            }
+        }
+        .NH3-N{
+            &:hover{
+                ::before{
+                    background-color: rgb(0, 0, 0);
+                    content: "含氮有機物主要來自動物排泄物及動植物屍體之分解，因此當水體中存在氨氮，可表示該水體環境適合動植物生存，較未受污染。";
+                }
+            }
+        }
+        .Oxygen{
+            &:hover{
+                ::before{
+                        background-color: rgba(0, 0, 0);
+                        content: "水中氧氣的溶解量，是水中生物在水中生存的重要指標之一，一般來自空氣或水中植物行光合作用所產生之氧氣。其中，淡水溶氧稍高於海水，通常 5 ∼ 14 ppm。";
+                }
+            }
+        }
+        .SS{
+            &:hover{
+                ::before{
+                    background-color: rgb(0, 0, 0);
+                    content: "懸浮於水中之有機或無機性顆粒，一般包含膠懸物、分散物及膠羽。會阻礙光在水中的穿透，與混濁度類似。";
+                }
+            }
+        }
+        .BOD{
+            &:hover{
+                ::before{
+                    background-color: rgb(0, 0, 0);
+                    content: "有機物質，在某特定時間及溫度下，被微生物的分解氧化作用所消耗的氧量。生化需氧量可表示水中生物可分解的有機物含量，間接也表示了水體受有機物污染的程度。";
+                }
             }
         }
     }
 }
 
 .rpi{
-    width: 5dvw;
+    width: 4dvw;
     height: 50dvh;
     //border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    padding-bottom: 2%;
+    padding-bottom: 20px;
     font-size: 20px;
     color: azure;
     div{
@@ -504,15 +621,24 @@ rpiIcon() {   // RPI表情
 }
 
 .rpiValue{
-    width: 15px;
-    height: 42dvh;
+    width: 10px;
+    height: 40dvh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-bottom: 70px;
+    padding-bottom: 60px;
+    margin-right: 15%; 
     //border: 1px solid black;
     p{
         color: azure;
     }
 }
+
+.riverImage {
+    position: absolute;
+    top: 18%;
+    right: 20px;
+    border-radius: 50px;
+}
+
 </style>_river
