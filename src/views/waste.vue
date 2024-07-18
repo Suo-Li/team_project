@@ -2,6 +2,8 @@
     import wasteTitle from "../components/waste/WasteTitleCp.vue"
     import wasteTai from "../components/waste/WasteTaiCp.vue"
     import wasteTrend from "../components/waste/WasteTrendCp.vue"
+    import WastePieProduce from "../components/waste/WastePieProduce.vue"
+    import WastePieProcess from "../components/waste/WastePieProcess.vue"
     
 </script>
 
@@ -16,6 +18,15 @@
         </div>
         <div class="chart Blk">
             <wasteTrend />
+        </div>
+
+        <div class="pieArea">
+            <div class="produce">
+                <WastePieProduce/>
+            </div>
+            <div class="process">
+                <WastePieProcess/>
+            </div>
         </div>
     </div>
 </template>
@@ -49,5 +60,29 @@
     }
     .chart{
         height: 100dvh;
+    }
+
+    .pieArea{
+        width: 90%;
+        height: 80dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.5);
+        // opacity:0.9;
+        border-radius: 2rem;
+        // border: 1px solid rgb(2, 2, 2);
+        .produce{
+            width: 100%;
+            height: 95%;
+            margin-top: 2%;
+            // border: 1px solid rgb(0, 0, 0);
+        }
+        .process{
+            width: 95%;
+            height: 95%;
+            margin-top: 2%;
+            // border: 1px solid rgb(37, 205, 231);
+        }
     }
 </style>
