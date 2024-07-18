@@ -14,7 +14,7 @@ export default {
   />
   <div class="homeimg">
     <div class="blackfilter"></div>
-    <img src="./homeimg.avif" alt="" />
+    <img src="/public/header/homeImg.avif" alt="" />
     <h1>OUR PLANET&nbsp;&nbsp;OUR RESPONSIBILITY</h1>
     <span
       >&mdash;&mdash;&mdash;&mdash;&mdash;TAIWAN
