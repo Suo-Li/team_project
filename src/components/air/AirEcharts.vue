@@ -363,8 +363,8 @@ export default {
                     <span id="airStatus">{{ airStatus }}</span>
                 </div>
                 <div class="back size">
-                    <!-- <img src="../components/賴1.png" alt=""> -->
-                    <span id="airStatus">{{ airStatus }}</span>
+                    <img src="../air/賴臭臉.jpg" alt="">
+                    <!-- <span id="airStatus">{{ airStatus }}</span> -->
                 </div>
             </div>
 
@@ -426,6 +426,7 @@ export default {
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap');
 
 * {
     padding: 0;
@@ -439,16 +440,19 @@ body {
 }
 
 .svgTaiwan {
-    width: 40%;
-    height: 115%;
-    position: absolute;
-    top: -11%;
-    left: 3%;
+    width: 44%;
+    height: 75%;
+    // position: absolute;
+    // top: -11%;
+    // left: 3%;
 
     svg {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+        width: 40%;
+    height: 104%;
+    position: absolute;
+    bottom: 1%;
+    left: 2%;
+        // object-fit: contain;
 
         path {
             stroke: white;
@@ -485,8 +489,14 @@ body {
 
 .showArea {
     font-family: "LXGW WenKai Mono TC", monospace;
-    width: 40%;
-    height: 100%;
+    // width: 40%;
+    // height: 100%;
+
+
+    // 統一格式
+    width: 523px;
+    height: 592px;
+    margin: 15px 0px;
     // border: 1px solid red;
     border-radius: 10px;
     display: flex;
@@ -498,8 +508,8 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 2px 2px 5px 1px black;
     position: absolute;
-    top: -6%;
-    right: 3%;
+    top: 1%;
+    right: 14%;
 
     .info {
         height: 100%;
@@ -530,7 +540,10 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-
+            font-family: "Noto Serif TC", serif;
+            font-size: 47px;
+            // overflow: hidden;
+            
             &:hover .front {
                 transform: rotateY(180deg);
             }
@@ -569,12 +582,17 @@ body {
 
             .back {
                 transform: rotateY(-180deg);
-
+                object-fit: contain;
+                clip-path: circle(50% at 50% 50%);
+                overflow: hidden;
+                // object-fit: cover;
 
                 // debug用
                 // transform: rotateY(0deg);
                 img {
-                    object-fit: contain;
+                    width: 99%;
+                    height: 99%;
+                    object-fit: cover
                 }
 
 
@@ -607,7 +625,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: space-around;
-
+            // font-family: "Noto Serif TC", serif;
             // height: ;
             .rightInfo {
                 width: 45%;
