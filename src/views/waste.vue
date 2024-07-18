@@ -2,10 +2,16 @@
 import wasteTitle from "../components/waste/WasteTitleCp.vue"
 import wasteTai from "../components/waste/WasteTaiCp.vue"
 import wasteTrend from "../components/waste/WasteTrendCp.vue"
+<<<<<<< HEAD
+=======
+import WastePieProduce from "../components/waste/WastePieProduce.vue"
+import WastePieProcess from "../components/waste/WastePieProcess.vue"
+>>>>>>> c1b08923d3f74eb5668d6aabdb34b79c7df7af7f
 import location from "@/stores/location";
 import { mapActions } from "pinia";
 
 export default {
+<<<<<<< HEAD
     methods: {
         ...mapActions(location, ["setPages"]),
     },
@@ -18,6 +24,21 @@ export default {
         wasteTrend
     },
 };
+=======
+  methods: {
+    ...mapActions(location, ["setPages"]),
+  },
+  mounted() {
+    this.setPages(4);
+  },
+  components: {
+    wasteTrend,
+    wasteTai,
+    wasteTitle
+  },
+};
+
+>>>>>>> c1b08923d3f74eb5668d6aabdb34b79c7df7af7f
 </script>
 
 
@@ -32,6 +53,15 @@ export default {
         </div>
         <div class="chart Blk">
             <wasteTrend />
+        </div>
+
+        <div class="pieArea">
+            <div class="produce">
+                <WastePieProduce />
+            </div>
+            <div class="process">
+                <WastePieProcess />
+            </div>
         </div>
     </div>
 </template>
@@ -50,6 +80,7 @@ export default {
     justify-content: start;
     align-items: center;
 }
+<<<<<<< HEAD
 
 .Blk {
     width: 90%;
@@ -68,5 +99,51 @@ export default {
 
 .chart {
     height: 100dvh;
+=======
+
+.Blk {
+    width: 90%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2rem;
+    margin-bottom: 5%;
+}
+
+.title {
+    height: 75dvh;
+}
+
+.taiwan {
+    height: 110dvh;
+}
+
+.chart {
+    height: 100dvh;
+}
+
+.pieArea {
+    width: 90%;
+    height: 80dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    // opacity:0.9;
+    border-radius: 2rem;
+
+    // border: 1px solid rgb(2, 2, 2);
+    .produce {
+        width: 100%;
+        height: 95%;
+        margin-top: 2%;
+        // border: 1px solid rgb(0, 0, 0);
+    }
+
+    .process {
+        width: 95%;
+        height: 95%;
+        margin-top: 2%;
+        // border: 1px solid rgb(37, 205, 231);
+    }
+>>>>>>> c1b08923d3f74eb5668d6aabdb34b79c7df7af7f
 }
 </style>
