@@ -2,16 +2,12 @@
 import wasteTitle from "../components/waste/WasteTitleCp.vue"
 import wasteTai from "../components/waste/WasteTaiCp.vue"
 import wasteTrend from "../components/waste/WasteTrendCp.vue"
-<<<<<<< HEAD
-=======
 import WastePieProduce from "../components/waste/WastePieProduce.vue"
 import WastePieProcess from "../components/waste/WastePieProcess.vue"
->>>>>>> c1b08923d3f74eb5668d6aabdb34b79c7df7af7f
 import location from "@/stores/location";
 import { mapActions } from "pinia";
 
 export default {
-<<<<<<< HEAD
     methods: {
         ...mapActions(location, ["setPages"]),
     },
@@ -21,24 +17,11 @@ export default {
     components: {
         wasteTitle,
         wasteTai,
-        wasteTrend
+        wasteTrend,
+        WastePieProduce,
+        WastePieProcess
     },
 };
-=======
-  methods: {
-    ...mapActions(location, ["setPages"]),
-  },
-  mounted() {
-    this.setPages(4);
-  },
-  components: {
-    wasteTrend,
-    wasteTai,
-    wasteTitle
-  },
-};
-
->>>>>>> c1b08923d3f74eb5668d6aabdb34b79c7df7af7f
 </script>
 
 
@@ -54,12 +37,11 @@ export default {
         <div class="chart Blk">
             <wasteTrend />
         </div>
-
-        <div class="pieArea">
-            <div class="produce">
+        <div class="pieArea Blk">
+            <div class="Produce">
                 <WastePieProduce />
             </div>
-            <div class="process">
+            <div class="Process">
                 <WastePieProcess />
             </div>
         </div>
@@ -80,7 +62,6 @@ export default {
     justify-content: start;
     align-items: center;
 }
-<<<<<<< HEAD
 
 .Blk {
     width: 90%;
@@ -98,52 +79,20 @@ export default {
 }
 
 .chart {
-    height: 100dvh;
-=======
-
-.Blk {
-    width: 90%;
-    background: rgba(255, 255, 255, 0.5);
+    height: 220dvh;
+    background: none;
     border-radius: 2rem;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
 }
-
-.title {
-    height: 75dvh;
-}
-
-.taiwan {
-    height: 110dvh;
-}
-
-.chart {
+.pieArea{
     height: 100dvh;
-}
-
-.pieArea {
-    width: 90%;
-    height: 80dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.5);
-    // opacity:0.9;
-    border-radius: 2rem;
-
-    // border: 1px solid rgb(2, 2, 2);
-    .produce {
+    .Produce, .Process{
         width: 100%;
-        height: 95%;
-        margin-top: 2%;
-        // border: 1px solid rgb(0, 0, 0);
+        height: 85%;
+        // border: 1px solid black;
     }
-
-    .process {
-        width: 95%;
-        height: 95%;
-        margin-top: 2%;
-        // border: 1px solid rgb(37, 205, 231);
-    }
->>>>>>> c1b08923d3f74eb5668d6aabdb34b79c7df7af7f
 }
 </style>

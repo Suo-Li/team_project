@@ -15,7 +15,7 @@
     const option = ref({
         title: {
             text: '單位：公噸',
-            padding: [400, 0, 0, 450],
+            bottom: '5%',
             textStyle:{
                 fontSize: 16,
                 fontWeight: "bold",
@@ -23,6 +23,21 @@
         }, 
         tooltip: {
             trigger: 'item'
+        },
+        toolbox: {
+            show: true,
+            itemSize: 20,
+            bottom: '5%',
+            right: '5%',
+            feature: {
+                mark: { show: true },
+                dataView: { show: true, readOnly: false },
+                restore: { show: true },
+                saveAsImage: { show: true }
+            },
+            iconStyle: {
+                borderWidth: 2.5
+            },
         },
         legend: {
             top: '3%',
@@ -103,20 +118,34 @@ let updateChartData = function() {
 
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&display=swap');
 .process{
-    height: 100dvh;
-    width: 100dvh;
-    margin-left: 5%;
-    
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     span{
-        font-size: 28px;
-        font-weight: bold;
-        color: rgb(35, 39, 39);
-        padding: 2% 20%;
+        font-family: "Cactus Classical Serif", serif;
+        font-size: 2rem;
+        letter-spacing: 0.8rem;
+        text-align: center;
+        margin-top: 2%;
+        margin-bottom: 1%;
     }
     select{
-        font-size: 20px;
-        margin: 2% 31%;
+        width: 35%;
+        height: 7%;
+        font-size: 1.5rem;
+        text-align: center;
+        border: none;
+        border-radius: 1rem;
+        background: white;
+        margin: 0 2%;
+        &:hover{
+            box-shadow: 0 0 10px black;
+        }
     }
     .chart{
         width: 80%;

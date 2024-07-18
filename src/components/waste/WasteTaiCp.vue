@@ -199,31 +199,31 @@ let upDateChartOpt = function() {
 provide(THEME_KEY, '')
 const option = ref({
     title: {
-        text: '一般廢棄物產出/處理量',
+        text: '單位：公噸',
         textStyle:{
-            fontSize: 26
+            fontSize: 20
         },
-        subtext: '單位：公噸',
-        subtextStyle:{
-            fontSize: 20,
-            color : '#fff',
-        },
-        top: '5%',
+        bottom: '5%',
         left: 'center'
     },
     tooltip: {formatter: '{c}公噸'},
     legend: {
-        bottom:'1%',
+        top:'10%',
         left: 'center'
     },
     toolbox: {
         show: true,
+        itemSize: 20,
+        right: '5%',
         feature: {
             mark: { show: true },
             dataView: { show: true, readOnly: false },
             restore: { show: true },
             saveAsImage: { show: true }
-        }
+        },
+        iconStyle: {
+            borderWidth: 2.5
+        },
     },
     series: [{
         name: '產出量',
@@ -332,27 +332,36 @@ const option = ref({
         <div class="chartBlk">
             <p>{{ selectedCity }}</p>
             <div class="day">
-                <select class="date year" v-model="selectedYear" @change="upDateChartOpt">
+                <select class="date year" v-model="selectedYear" @click="upDateChartOpt">
                     <option value="">年份</option>
                     <option v-for="(yy, index) in arrYear" :value="yy" :key="yy">{{ yy }}年</option>
                 </select>
-                <select class="date month" v-model="selectedMonth" @change="upDateChartOpt">
+                <select class="date month" v-model="selectedMonth" @click="upDateChartOpt">
                     <option value="">月份</option>
-                    <option value="">年度數據</option>
                     <option v-for="mm in 12" :value="mm" :key="mm">{{ mm }}月</option>
                 </select>
                 <button type="button" @click="twClick">全台數據</button>
             </div>
+            <span>一般廢棄物產出/處理量</span>
             <v-chart class="dblPie" :option="option" autoresize />
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&display=swap');
 p{
     font-family: "Cactus Classical Serif", serif;
     font-size: 3rem;
     letter-spacing: 1rem;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+span{
+    font-family: "Cactus Classical Serif", serif;
+    font-size: 2rem;
+    letter-spacing: 0.8rem;
     text-align: center;
     margin-top: 2%;
     margin-bottom: 1%;
@@ -390,9 +399,6 @@ p{
                 border-radius: 1rem;
                 background: white;
                 margin: 0 2%;
-                option{
-                    border-radius: none;
-                }
                 &:hover{
                     box-shadow: 0 0 10px black;
                 }
