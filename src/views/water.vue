@@ -1,6 +1,6 @@
 <script>
-import waterData from "../components/waterData.vue";
-import waterLine2 from "../components/waterLine2.vue";
+import waterData from "../components/water/waterData.vue";
+import waterLine2 from "../components/water/waterLine2.vue";
 import location from "@/stores/location";
 import { mapActions } from "pinia";
 
