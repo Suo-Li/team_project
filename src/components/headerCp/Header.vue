@@ -57,8 +57,7 @@ $MainColor: rgba(108, 186, 241, 0.537);
     z-index: 2;
     &:hover{
       scale: 1.1;
-      color: #000;
-      text-shadow: 0 0 5px white;
+      border-bottom: 3px solid white;
     }
     &:active{
       scale: 1;
