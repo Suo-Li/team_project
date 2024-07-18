@@ -19,7 +19,7 @@ export default {
             avgAirData: {},
             uniqueDates: [],
             selectedTime: '',
-            areaName: '請選擇',
+            areaName: '請點擊地圖',
             currentAirData: null,
             airStatus: ''
             // 保留
