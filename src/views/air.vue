@@ -120,7 +120,7 @@ export default {
 
   .taiwanSVG {
     width: 98vw;
-    height: 80dvh;
+    height: 84dvh;
     // border: 1px solid black;
     z-index: 1;
     display: flex;

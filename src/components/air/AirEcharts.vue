@@ -494,7 +494,7 @@ body {
 
     // 統一格式
     width: 523px;
-    height: 606px;
+    height: 592px;
     margin: 15px 0px;
     // border: 1px solid red;
     border-radius: 10px;
@@ -507,8 +507,8 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 2px 2px 5px 1px black;
     position: absolute;
-    top: -2%;
-    right: 15%;
+    top: 1%;
+    right: 14%;
 
     .info {
         height: 100%;
