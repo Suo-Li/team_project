@@ -119,8 +119,8 @@ export default {
   }
 
   .taiwanSVG {
-    width: 80vw;
-    height: 70dvh;
+    width: 98vw;
+    height: 80dvh;
     // border: 1px solid black;
     z-index: 1;
     display: flex;
@@ -128,7 +128,8 @@ export default {
     justify-content: space-around;
     position: absolute;
     bottom: 0%;
-    margin-bottom: 3%;
+    // margin-bottom: 3%;
+    overflow: hidden;
   }
 
   /* .dashBoard {

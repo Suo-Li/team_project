@@ -363,8 +363,8 @@ export default {
                     <span id="airStatus">{{ airStatus }}</span>
                 </div>
                 <div class="back size">
-                    <!-- <img src="../components/賴1.png" alt=""> -->
-                    <span id="airStatus">{{ airStatus }}</span>
+                    <img src="../components/賴1.png" alt="">
+                    <!-- <span id="airStatus">{{ airStatus }}</span> -->
                 </div>
             </div>
 
@@ -439,16 +439,19 @@ body {
 }
 
 .svgTaiwan {
-    width: 40%;
-    height: 115%;
-    position: absolute;
-    top: -11%;
-    left: 3%;
+    width: 44%;
+    height: 75%;
+    // position: absolute;
+    // top: -11%;
+    // left: 3%;
 
     svg {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+        width: 40%;
+    height: 104%;
+    position: absolute;
+    bottom: 1%;
+    left: 2%;
+        // object-fit: contain;
 
         path {
             stroke: white;
@@ -485,8 +488,14 @@ body {
 
 .showArea {
     font-family: "LXGW WenKai Mono TC", monospace;
-    width: 40%;
-    height: 100%;
+    // width: 40%;
+    // height: 100%;
+
+
+    // 統一格式
+    width: 523px;
+    height: 606px;
+    margin: 15px 0px;
     // border: 1px solid red;
     border-radius: 10px;
     display: flex;
@@ -498,8 +507,8 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 2px 2px 5px 1px black;
     position: absolute;
-    top: -6%;
-    right: 3%;
+    top: -2%;
+    right: 15%;
 
     .info {
         height: 100%;
