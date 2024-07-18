@@ -1,6 +1,5 @@
 <script>
-import waterCom from "../components/waterCom.vue";
-import waterLine from "../components/waterLine.vue";
+import waterData from "../components/waterData.vue";
 import waterLine2 from "../components/waterLine2.vue";
 import location from "@/stores/location";
 import { mapActions } from "pinia";
@@ -13,16 +12,14 @@ export default {
     this.setPages(3);
   },
   components: {
-    waterCom,
-    waterLine,
+    waterData,
     waterLine2,
   },
 };
 </script>
 
 <template>
-  <waterCom />
-  <waterLine />
+  <waterData />
   <waterLine2 />
 </template>
 

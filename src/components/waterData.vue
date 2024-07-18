@@ -131,7 +131,7 @@ rpiIcon() {   // RPI表情
     <p class="G" @click="selectRiver('濁水溪'), riverCity('彰化 雲林')">濁水溪</p>
     <p class="H" @click="selectRiver('北港溪'), riverCity('雲林 嘉義')">北港溪</p>
     <p class="I" @click="selectRiver('朴子溪'), riverCity('嘉義')">朴子溪</p>
-    <p class="J" @click="selectRiver('八掌溪'), riverCity('嘉義、台南')">八掌溪</p>
+    <p class="J" @click="selectRiver('八掌溪'), riverCity('嘉義 台南')">八掌溪</p>
     <p class="K" @click="selectRiver('急水溪'), riverCity('台南')">急水溪</p>
     <p class="L" @click="selectRiver('曾文溪'), riverCity('台南')">曾文溪</p>
     <p class="M" @click="selectRiver('鹽水溪'), riverCity('台南')">鹽水溪</p>
@@ -151,7 +151,7 @@ rpiIcon() {   // RPI表情
             <option v-for="year in uniqueYears" :key="year" :value="year">{{ year }}</option>
         </select>
         <h2 class="river">{{ selectedRiver }}</h2>
-        <i class="fa-sharp fa-solid fa-location-dot fa-fade" style="color: #ff0a54;"></i>
+        <i v-if="this.selectedRiver" class="fa-sharp fa-solid fa-location-dot fa-fade" style="color: #ff0a54;"></i><!-- v-if 還沒選擇河流時，地標不會出現 -->
         <p class="cityName">{{ this.riverbyCity }}</p>
     </div>
     <div class="rpiCard"> <!-- 翻轉圈圈 -->
@@ -174,6 +174,8 @@ rpiIcon() {   // RPI表情
     <p class="testText" >生化需氧量最大值 <p>{{ selectedData ? selectedData.value7 : '' }}</p></p>
     <p class="testText" >懸浮固體最大值 <p>{{ selectedData ? selectedData.value8 : '' }}</p></p>
     <p class="testText" >氨氮最大值<p>{{ selectedData ? selectedData.value9 : '' }}</p></p>
+    <p class="testText" >資料來源:<a href="https://data.gov.tw/dataset/89036">重要河川水質概況</a></p>
+    
     </div>
 </div>
 <div class="rpi">
@@ -193,6 +195,12 @@ rpiIcon() {   // RPI表情
 </template>
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap');
+
+*{
+    font-family: "Noto Serif TC", serif;
+}
+
 .backGround{
     width: 100%;
     height: 100vh;
@@ -322,12 +330,12 @@ rpiIcon() {   // RPI表情
 }
 
 .info{
-    width: 31dvw;
-    height: 83dvh;
-    margin: 20px 0px;
+    width: 34dvw;
+    height: 80dvh;
+    margin: 15px 0px;
     background-color: rgba(128, 128, 128, 0.599);
     box-shadow: rgba(0, 0, 0, 0.36) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    border-radius: 30px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -341,9 +349,9 @@ rpiIcon() {   // RPI表情
         color: azure;
         text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
         .year{
-            width: 20%;
-            height: 40%;
-            font-size: 14px;
+            width: 19%;
+            height: 55%;
+            font-size: 15px;
             text-align: center;
             border-radius: 5px;
             background-color: rgba(211, 208, 208, 0.67);
@@ -360,7 +368,7 @@ rpiIcon() {   // RPI表情
     }
     .rpiCard{
         height: 35%;
-        width: 45%;
+        width: 28dvh; // 80dvh的35%=28dvh 因為.info大div的高度是80dvh，想要使圓圈不會因為調整外面的框而變形，可設定寬or高為外框的寬高~~byこう先生xD
         margin: 10px;
         position: relative;
         &:hover .front{ // 觸碰時，前面由0轉向180
@@ -378,7 +386,7 @@ rpiIcon() {   // RPI表情
             border: 8px solid rgb(32, 179, 32);
             border-radius: 50%;
             box-shadow: rgba(0, 0, 0, 0.34) 0px 3px 8px;
-            //以下是圓圈中的內容樣式
+            // ⤵ 是圓圈中的內容樣式
             color: rgb(255, 255, 255);
             text-shadow: 2px 2px 0px black;
             display: flex;
@@ -391,12 +399,13 @@ rpiIcon() {   // RPI表情
             backface-visibility: hidden;
         }
         .front{
+            padding-bottom: 15px;
             font-size: 30px;
-            font-weight: 600;
             transform:  rotateY(0deg);
             
             .rpiNum{
-            font-size: 40px;
+                font-size: 35px;
+                font-weight: 600;
             }
             /* &:hover{ 要對整個card，不是單面~~
             transform: rotateY(180deg);
@@ -418,13 +427,13 @@ rpiIcon() {   // RPI表情
         width: 100%;
         display: flex; // ⤵ 使每個 p 並排、自動換下行、置中
         flex-wrap: wrap;
-        justify-content: space-between;
+        // justify-content: space-between;
         align-items: center;
 
         .testText{
             width: 47%;
             height: 17%;
-            margin: 3px 5px;
+            margin: 5px 7px;
             background-color: rgba(255, 255, 255, 0.834);
             border-left: 10px solid rgba(60, 57, 57, 0.888);
             border-radius: 5px;
@@ -434,6 +443,20 @@ rpiIcon() {   // RPI表情
             align-items: center;
             justify-content: space-between;
             padding: 10px;
+            position: relative;
+
+            &:hover{
+                ::before{
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    width: 100%;
+                    height: 100%;
+                    
+                    background-color: bisque;
+                    content: "睡覺1234679999999";
+            }
+            }
             
             p{
                 //font-weight: bold; 
