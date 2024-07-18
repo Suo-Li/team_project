@@ -42,12 +42,12 @@
     }
 
     .title{
-        height: 100%;
+        height: 75dvh;
     }
     .taiwan{
-        height: 150%;
+        height: 110dvh;
     }
     .chart{
-        height: 50%;
+        height: 100dvh;
     }
 </style>

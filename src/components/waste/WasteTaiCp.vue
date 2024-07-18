@@ -13,9 +13,8 @@ onMounted(() => {
     fetch("https://data.moenv.gov.tw/api/v2/stat_p_127?api_key=45b37ff8-c43e-40fc-ae21-a15629c78020")
     .then(res => res.json())
     .then(dataCity_out =>{
-        let DataCity_out = dataCity_out.records;
-        // console.log(newDataCity_out);
-        DataCity_out.forEach((item) => {
+        let DataCity_out = ref(dataCity_out.records);
+        DataCity_out.value.forEach((item) => {
             let CityOut = { 統計期_年: '', 統計期_月: '', 統計區: '', 總產生量: '', 一般垃圾量: '', 資源垃圾量: '', 廚餘量: '' }
             let day = item.item1.split(" ")
             if ((Number(day[0].split("年")[0]) >= 110) && (Number(day[0].split("年")[0]) <= 112)) {
@@ -51,9 +50,8 @@ onMounted(() => {
     fetch("https://data.moenv.gov.tw/api/v2/stat_p_129?api_key=45b37ff8-c43e-40fc-ae21-a15629c78020")
     .then(res => res.json())
     .then(dataCity_handle =>{
-        let DataCity_handle = dataCity_handle.records;
-        // console.log(newDataCity_handle);
-        DataCity_handle.forEach((item) => {
+        let DataCity_handle = ref(dataCity_handle.records);
+        DataCity_handle.value.forEach((item) => {
             let CityHandle = { 統計期_年: '', 統計期_月: '', 統計區: '', 總處理量: '', 回收再利用量: '', 焚化量: '', 衛生掩埋量: '', 其他處理量: '' }
             let day = item.item1.split(" ")
             if ((Number(day[0].split("年")[0]) >= 110) && (Number(day[0].split("年")[0]) <= 112)) {
@@ -86,8 +84,8 @@ onMounted(() => {
     fetch("https://data.moenv.gov.tw/api/v2/stat_p_126?api_key=45b37ff8-c43e-40fc-ae21-a15629c78020")
     .then(res => res.json())
     .then(dataAll_out =>{
-        let DataAll_out = dataAll_out.records;
-        DataAll_out.forEach((item) => {
+        let DataAll_out = ref(dataAll_out.records);
+        DataAll_out.value.forEach((item) => {
             let AllOut = { 統計期_年: '', 統計期_月: '', 總產生量: '', 一般垃圾量: '', 資源垃圾量: '', 廚餘量: '' }
             let day = item.item1.split(" ")
             if (Object.keys(day).length == 2){
@@ -114,8 +112,8 @@ onMounted(() => {
     fetch("https://data.moenv.gov.tw/api/v2/stat_p_128?api_key=45b37ff8-c43e-40fc-ae21-a15629c78020")
     .then(res => res.json())
     .then(dataAll_handle =>{
-        let DataAll_handle = dataAll_handle.records;
-        DataAll_handle.forEach((item) => {
+        let DataAll_handle = ref(dataAll_handle.records);
+        DataAll_handle.value.forEach((item) => {
             let AllHandle = { 統計期_年: '', 統計期_月: '', 總處理量: '', 回收再利用量: '', 焚化量: '', 衛生掩埋量: '', 其他處理量: '' }
             let day = item.item1.split(" ")
             if (Object.keys(day).length == 2){
@@ -210,21 +208,29 @@ const option = ref({
         ]
     }]
 })
-
+console.log(wasteCityOut.value);
 function upDateCity(params) {
-    let catchData = [selectedYear, selectedMonth]
-    let getArr = []
-    wasteAllOut.forEach((date) => {
-        if ((date.統計期_年 === catchData[0]) && (date.統計期_月 === catchData[1])){
-            getArr.push(data)
-        }
-    })
-    console.log(getArr);
-    option.value.series[0].data = [
-        { value: 0, name: '一般垃圾量' },
-        { value: 100, name: '資源垃圾量' },
-        { value: 100, name: '廚餘量' },
-    ]
+    if (selectedCity.value === ""){
+        wasteAllOut.value.forEach((dateAllOut) => {
+            if ((dateAllOut.value.統計期_年 === selectedYear.value) && (dateAllOut.value.統計期_月 === selectedMonth.value)){
+                option.value.series[0].data = [
+                    { value: dateAllOut.value.一般垃圾量, name: '一般垃圾量' },
+                    { value: dateAllOut.value.資源垃圾量, name: '資源垃圾量' },
+                    { value: dateAllOut.value.廚餘量, name: '廚餘量' },
+                ]
+            }
+        })
+        wasteAllHandle.value.forEach((dateAllHandle) => {
+            if ((dateAllHandle.value.統計期_年 === selectedYear.value) && (dateAllHandle.value.統計期_月 === selectedMonth.value)){
+                option.value.series[1].data = [
+                { value: dateAllHandle.value.回收再利用量, name: '回收再利用量' },
+                { value: dateAllHandle.value.焚化量, name: '焚化量' },
+                { value: dateAllHandle.value.衛生掩埋量, name: '衛生掩埋量' },
+                { value: dateAllHandle.value.其他處理量, name: '其他處理量' }
+                ]
+            }
+        })
+    }
 }
 
 </script>
