@@ -189,8 +189,6 @@ let upDateChartOutTrend = function() {
 const selYearHan = ref('')
 const selCityHan = ref('')
 let upDateChartHanTrend = function() {
-    console.log(selYear.value);
-    console.log(selCity.value);
     let selItemHan = ref([]);
     dataHandle.value.forEach((item) => {
         if (item.統計期_年 === selYearHan.value && item.統計區 === selCityHan.value && item.統計期_月 !== "") {
